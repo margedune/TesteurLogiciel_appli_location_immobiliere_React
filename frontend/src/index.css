@@ -8,7 +8,9 @@ body {
 }
 
 #root {
-  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
   margin: auto;
   width: 90%;
 }
@@ -40,6 +42,54 @@ nav ul li {
 
 nav ul a {
   text-decoration: none;
+}
+
+.home {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.banner {
+  display: flex;
+  flex-direction: column; 
+  align-items: center;
+  justify-content: center;
+  background-image: url('./images/chez-vous.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 223px;
+  border-radius: 25px;
+  color: white;
+}
+
+.logement-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  padding: 40px;
+  background-color: lightgray;
+  border-radius: 25px;
+
+  justify-items: center;
+  align-items: center;
+}
+
+.logement-item {
+  background-color: #FF6060;
+  text-align: center;
+  width: 90%;
+  height: 200px;
+  padding: 20px;
+  border-radius: 5px;
+
+  display: flex;
+  justify-content: left;
+  align-items: end;
+  color: white;
+  cursor: pointer;
 }
 
 .footer {

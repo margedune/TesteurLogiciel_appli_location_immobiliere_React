@@ -1,10 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import logo from "./images/logo.png";
 
 const Header = () => {
     return (
         <nav>
-            <img src="/images/logo.png"></img>
+            <img src={logo} alt="Logo" />
             <ul>
                 <li>
                     <Link to="/">Home</Link>

@@ -1,8 +1,14 @@
 import React from "react";
+import LogementList from "../logement/LogementList";
 
 const Home = () => {
     return (
-        <div>Page d'accueil</div>
+        <div className="home">
+            <div className="banner">
+                <h1>Chez vous, partout et ailleurs</h1>
+            </div>
+            <LogementList />
+        </div>
     );
 }
 
