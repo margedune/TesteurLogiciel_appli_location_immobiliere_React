@@ -1,8 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-
-const Navigation = () => {
+const Header = () => {
     return (
         <nav>
             <img src="/images/logo.png"></img>
@@ -18,4 +17,4 @@ const Navigation = () => {
     );
 }
 
-export default Navigation;
+export default Header;
