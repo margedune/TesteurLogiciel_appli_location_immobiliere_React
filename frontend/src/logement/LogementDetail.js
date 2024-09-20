@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import Carrousel from "../carrousel";
 import arrowBack24px2 from "../images/arrow_back_ios-24px2.png";
 import Rate from "../rate";
+import DropdownOpen from "../dropdown-open";
 
 const LogementDetail = () => {
     const { id } = useParams();
@@ -26,14 +27,8 @@ const LogementDetail = () => {
                     <div className="tag-item">paris 10</div>
                 </div>
                 <Rate />
-                <div className="dropdown-open left-column">
-                    <label>Description</label>
-                    <img src={arrowBack24px2} />
-                </div>
-                <div className="dropdown-open right-column">
-                    <label>Equipement</label>
-                    <img src={arrowBack24px2} />
-                </div>
+                <DropdownOpen label="Description" className="dropdown-open left-column" />
+                <DropdownOpen label="Equipement" className="dropdown-open right-column" />
             </div>
         </div>
     );

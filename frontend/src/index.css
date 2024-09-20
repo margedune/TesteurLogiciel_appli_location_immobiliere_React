@@ -251,3 +251,10 @@ nav ul a {
 .not-found h4 {
   color: #FF6060;
 }
+
+.about {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}

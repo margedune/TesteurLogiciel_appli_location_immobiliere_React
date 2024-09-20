@@ -1,12 +1,11 @@
 import React from "react";
 import LogementList from "../logement/LogementList";
+import Banner from "../banner";
 
 const Home = () => {
     return (
         <div className="home">
-            <div className="banner">
-                <h1>Chez vous, partout et ailleurs</h1>
-            </div>
+            <Banner label="Chez vous, partout et ailleurs" />
             <LogementList />
         </div>
     );
