@@ -16,11 +16,12 @@ const LogementDetail = () => {
             .catch(error => console.error('Erreur lors de la récupération de la propriété :', error))
     }, []);
 
-    //console.log(property.tags);
-
     return  (
         <div className="logement-detail">
-            <Carrousel />
+            {property?.pictures?.length > 0
+                ? (<Carrousel images={property?.pictures} />) 
+                : (<></>)
+            }
             <br/>
             <div className="logement-description">
                 <div className="logement-localite left-column">
