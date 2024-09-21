@@ -1,6 +1,6 @@
 import React from "react";
-import Banner from "../banner";
-import DropdownOpen from "../dropdown-open";
+import Banner from "../components/banner";
+import DropdownOpen from "../components/collapse";
 
 const About = () => {
     return (

@@ -154,14 +154,14 @@ nav ul a {
   line-height: 26px;
 }
 
-.logement-voter {
+.host {
   color: #FF6060;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   align-items: center;
 }
 
-.logement-voter .host {
+.host-picture {
   width: 64px;
   height: 64px;
   background: #C4C4C4;
@@ -189,10 +189,12 @@ nav ul a {
   justify-content: center;
 }
 
-.dropdown-open {
-  background-color: #FF6060;
+.collapse-large {
   width: 90%;
-  height: 52px;
+}
+
+.collapse-btn {
+  background-color: #FF6060;
   color: white;
   border-radius: 10px;
   padding: 0 20px;
@@ -202,9 +204,17 @@ nav ul a {
   align-items: center;
 }
 
-.dropdown-open img {
-  width: 32px;
-  height: 32px;
+.collapse-content {
+  padding: 10px;
+}
+
+.large {
+  height: 52px;
+}
+
+.collapse-large img {
+  width: 24px;
+  height: 14px;
 }
 
 .left-column {

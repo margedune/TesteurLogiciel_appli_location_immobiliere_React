@@ -3,7 +3,7 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Home from './pages/home';
 import About from './pages/about';
-import LogementDetail from './logement/LogementDetail';
+import LogementDetail from './logement/logement-detail';
 import NotFound from './notfound'
 
 const AppRoutes = () => {

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import caroussel from './images/caroussel-1.png';
-import arrowBack from './images/arrow-back.png';
-import arrowForward from './images/arrow-forward.png';
+import arrowBack from '../images/arrow-back.png';
+import arrowForward from '../images/arrow-forward.png';
 
 const Carrousel = () => {
     const maxCounter = 6;

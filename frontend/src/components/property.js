@@ -1,17 +1,17 @@
 import React from "react";
 import { useNavigate } from 'react-router-dom';
 
-const LogementItem = ({ logementId }) => {
+const Property = ({ property }) => {
     const navigate = useNavigate();
     const handleClick = () => {
-        navigate(`/logement/${logementId}`);
+        navigate(`/logement/${property.id}`);
     };
 
     return (
         <div className="logement-item" onClick={handleClick}>
-            <span>Titre de la location</span>
+            <span>{property.title}</span>
         </div>
     );
 }
 
-export default LogementItem;
+export default Property;

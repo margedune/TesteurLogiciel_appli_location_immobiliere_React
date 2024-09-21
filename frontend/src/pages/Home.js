@@ -1,6 +1,6 @@
 import React from "react";
-import LogementList from "../logement/LogementList";
-import Banner from "../banner";
+import LogementList from "../logement/logement-list";
+import Banner from "../components/banner";
 
 const Home = () => {
     return (
