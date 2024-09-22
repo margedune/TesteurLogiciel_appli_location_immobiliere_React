@@ -1,5 +1,18 @@
 import React, { useEffect, useState } from "react";
-import Property from "../components/property";
+import styled from "styled-components";
+import Thumb from "../components/thumb";
+
+const LogementListWrapper = styled.div`
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    padding: 40px;
+    background-color: lightgray;
+    border-radius: 25px;
+
+    justify-items: center;
+    align-items: center;
+`;
 
 const LogementList = () => {
     const [properties, setProperties] = useState([]);
@@ -12,15 +25,15 @@ const LogementList = () => {
     }, []);
 
     return (
-        <div className="logement-list">
+        <LogementListWrapper>
             {
                 properties.length > 0 
                     ? (properties.map((property) => (
-                        <Property key={property.id} property={property} />
+                        <Thumb key={property.id} property={property} />
                     ))) 
                     : (<p>Aucune propriété trouvée.</p>)
             }
-        </div>
+        </LogementListWrapper>
     );
 }
 

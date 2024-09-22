@@ -38,6 +38,13 @@ const CounterWrapper = styled.div`
     justify-content: center;
 `
 
+const ArrowButton = styled.img`
+    max-width: 48px;
+    height: 80px;
+    margin: 0 10px;
+    cursor: pointer;
+`;
+
 const Carrousel = ({ images }) => {
     const maxCounter = images.length - 1; 
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -57,13 +64,13 @@ const Carrousel = ({ images }) => {
     return (
         <CarrouselWrapper $backgroundImage={images[currentIndex]}>
             <ArrowWrapper className="arrow">
-                <img 
+                <ArrowButton 
                     className="arrow-back"
                     src={arrowBack}
                     alt="arrowBack" 
                     onClick={decrement}
                 />
-                <img
+                <ArrowButton
                     className="arrow-forward"
                     src={arrowForward} 
                     alt="arrowForward"
