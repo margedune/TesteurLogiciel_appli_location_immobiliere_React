@@ -12,10 +12,15 @@ body {
   flex-direction: column;
   gap: 50px;
   margin: auto;
-  width: 90%;
+  width: 100%;
+
+  @media (max-width: 768px) {
+    gap: 20px;
+  }
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+

@@ -17,12 +17,28 @@ const CollapseButton = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-`
+
+    @media (max-width: 768px) {
+        height: 30px;
+        font-size: 0.7rem;
+    }
+`;
+
+const CollapseArrow = styled.img`
+    @media (max-width: 768px) {
+        width: 14px;
+        height: 8px;
+    }
+`;
 
 const CollapseContent = styled.div`
     display: flex;
     flex-direction: column;
     padding: 10px;
+
+    @media (max-width: 768px) {
+        font-size: 0.7rem;
+    }
 `
 
 const Collapse = ({ label, width, btnHeight, content }) => {
@@ -37,8 +53,8 @@ const Collapse = ({ label, width, btnHeight, content }) => {
             <CollapseButton $btnHeight={btnHeight} onClick={() => setCollapse(!collapse)}>
                 <label>{label}</label>
                 {collapse 
-                    ? (<img src={collapseUp} alt="Arrow icon" />)
-                    : (<img src={collapseDown} alt="Arrow icon" />)
+                    ? (<CollapseArrow src={collapseUp} alt="Arrow icon" />)
+                    : (<CollapseArrow src={collapseDown} alt="Arrow icon" />)
                 }
             </CollapseButton>
             <CollapseContent style={{display: handleDisplay()}}>

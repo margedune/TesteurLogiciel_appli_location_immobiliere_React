@@ -8,6 +8,11 @@ const RateWrapper = styled.div`
   gap: 5px;
 `;
 
+const RateItem = styled.img`
+  width: 18px;
+  height: 18px;
+`;
+
 const Rate = ({ rating }) => {
   const totalStars = 5;
   const validRating = Math.min(Math.max(rating, 0), totalStars);
@@ -23,12 +28,12 @@ const Rate = ({ rating }) => {
       {Array(activeStars)
         .fill()
         .map((_, index) => (
-          <img key={index} src={starActive} alt={`Star ${index + 1}`} />
+          <RateItem key={index} src={starActive} alt={`Star ${index + 1}`} />
         ))}
       {Array(inactiveStars)
         .fill()
         .map((_, index) => (
-          <img
+          <RateItem
             key={index + activeStars}
             src={starInactive}
             alt={`Inactive Star ${index + 1}`}

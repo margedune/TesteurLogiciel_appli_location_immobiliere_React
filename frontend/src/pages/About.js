@@ -2,8 +2,12 @@ import React from "react";
 import styled from "styled-components";
 import Banner from "../components/banner";
 import Collapse from "../components/collapse";
+import picture from "../images/Img_Apropos.png";
 
 const AboutWrapper = styled.div`
+    width: 90%;
+    margin: auto;
+    
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -13,11 +17,11 @@ const AboutWrapper = styled.div`
 const About = () => {
     return (
         <AboutWrapper>
-            <Banner />
-            <Collapse label="Fiabilité" width="90%" btnHeight="52px" />
-            <Collapse label="Respect" width="90%" btnHeight="52px" />
-            <Collapse label="Service" width="90%" btnHeight="52px" />
-            <Collapse label="Sécurité" width="90%" btnHeight="52px" />
+            <Banner backgroundImage={picture} dark={false} />
+            <Collapse label="Fiabilité" width="70%" btnHeight="52px" />
+            <Collapse label="Respect" width="70%" btnHeight="52px" />
+            <Collapse label="Service" width="70%" btnHeight="52px" />
+            <Collapse label="Sécurité" width="70%" btnHeight="52px" />
         </AboutWrapper>
     );
 }

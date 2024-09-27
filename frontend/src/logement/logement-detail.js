@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { useParams } from 'react-router-dom';
 import Carrousel from "../components/carrousel";
@@ -7,7 +7,8 @@ import Collapse from "../components/collapse";
 import { v4 as uuidv4 } from 'uuid';
 
 const LogementDetailWrapper = styled.div`
-    width: 100%;
+    width: 90%;
+    margin: auto;
 `;
 
 const LogementDescription = styled.div`
@@ -18,6 +19,26 @@ const LogementDescription = styled.div`
 
     & > div:nth-child(2) {
         justify-self: end;
+    }
+
+    @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+         "localite"
+         "tags"
+         "rate"
+         "host"
+         "description"
+         "equipement"
+    }
+`;
+
+const LocaliteWrapper = styled.div`
+    
+
+    @media (max-width: 768px) {
+        grid-area: 'localite';
+        order: 1;
     }
 `;
 
@@ -35,17 +56,39 @@ const LocaliteRegion = styled.div`
 
 const HostWrapper = styled.div`
     color: #FF6060;
+    grid-area: 'host';
+
+    @media (max-width: 768px) {
+        order: 3;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+`;
+
+const HostNameWarapper = styled.div`
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     align-items: center;
+    @media (max-width: 768px) {
+            font-size: 12px;
+    }
 `;
 
 const HostName = styled.div`
+    flex-direction: column;
+`;
+
+const HostNameItem = styled.div`
+    padding-right: 5px;
     display: flex;
-    flex-direction: column;  
+    justify-content: right;
 `;
 
 const HostPicture = styled.img`
+    display: flex;
     width: 64px;
     height: 64px;
     background: #C4C4C4;
@@ -55,6 +98,11 @@ const HostPicture = styled.img`
 const TagsWrapper = styled.div`
     display: flex;
     gap: 5px;
+
+    @media (max-width: 768px) {
+        grid-area: 'tags';
+        order: 2;
+    }
 `;
 
 const TagItem = styled.div`
@@ -69,12 +117,50 @@ const TagItem = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
+    @media (max-width: 768px) {
+        width: 84px;
+        height: 18px;
+        font-size: 0.55rem;
+        border-radius: 5px;
+    }
 `;
 
-const CollapseWrapper = styled.div`
-  justify-self: end;  /* Utilisé pour une grille */
-  align-self: flex-end; /* Utilisé pour un conteneur flexbox */
-  width: 90%;  /* Ajuste cette largeur selon tes besoins */
+const RateWrapper = styled.div`
+    @media (max-width: 768px) {
+        grid-area: 'rate';
+        order: 4;
+        position: absolute;
+        display: none;
+    }
+`;
+
+const RateWrapperMobile = styled.div`
+    display: none;
+
+    @media (max-width: 768px) {
+        display: flex;
+    }
+`;
+
+const CollapseDescription = styled.div`
+    @media (max-width: 768px) {
+        grid-area: 'description';
+        order: 5;
+
+        display: flex;
+        position: relative;
+    }
+`;
+
+const CollapseEquipement = styled.div`
+    @media (max-width: 768px) {
+        grid-area: 'equipement';
+        order: 6;
+
+        display: flex;
+        position: relative;
+    }
 `;
 
 const LogementDetail = () => {
@@ -86,7 +172,7 @@ const LogementDetail = () => {
             .then(response => response.json())
             .then(property => setProperty(property))
             .catch(error => console.error('Erreur lors de la récupération de la propriété :', error))
-    }, []);
+    }, [id]);
 
     return  (
         <LogementDetailWrapper>
@@ -96,17 +182,22 @@ const LogementDetail = () => {
             }
             <br/>
             <LogementDescription>
-                <div>
+                <LocaliteWrapper>
                     <LocaliteTitle>{property?.title}</LocaliteTitle>
                     <LocaliteRegion>{property.location}</LocaliteRegion>
-                </div>
+                </LocaliteWrapper>
                 <HostWrapper>
-                    <HostName>
-                        {property?.host?.name.split(" ").map((name) => (
-                            <div key={uuidv4()}>{name}</div>
-                        ))}
-                    </HostName>
-                    <HostPicture src={property?.host?.picture} />
+                    <RateWrapperMobile>
+                        <Rate rating={parseInt(property?.rating)} />
+                    </RateWrapperMobile>
+                    <HostNameWarapper>
+                        <HostName>
+                            {property?.host?.name.split(" ").map((name) => (
+                                <HostNameItem key={uuidv4()}>{name}</HostNameItem>
+                            ))}
+                        </HostName>
+                        <HostPicture src={property?.host?.picture} />
+                    </HostNameWarapper>
                 </HostWrapper>
                 <TagsWrapper>
                     {property.tags !== undefined
@@ -114,21 +205,27 @@ const LogementDetail = () => {
                         : (<div>Aucun tag</div>)
                     }
                 </TagsWrapper>
-                <Rate rating={parseInt(property?.rating)} />
-                <Collapse 
-                    label="Description"
-                    width="100%"
-                    btnHeight="52px"
-                    content={property.description} 
-                />    
-                <Collapse
-                    label="Equipement" 
-                    width="100%"
-                    btnHeight="52px"
-                    content={property?.equipments?.map((equipment) => (
-                        <div key={uuidv4()}>{equipment}</div>
-                    ))}
-                />
+                <RateWrapper>
+                    <Rate rating={parseInt(property?.rating)} />
+                </RateWrapper>
+                <CollapseDescription>
+                    <Collapse
+                        label="Description"
+                        width="100%"
+                        btnHeight="52px"
+                        content={property.description}
+                    />    
+                </CollapseDescription>
+                <CollapseEquipement>
+                    <Collapse
+                        label="Equipement" 
+                        width="100%"
+                        btnHeight="52px"
+                        content={property?.equipments?.map((equipment) => (
+                            <div key={uuidv4()}>{equipment}</div>
+                        ))}
+                    />
+                </CollapseEquipement>
             </LogementDescription>
         </LogementDetailWrapper>
     );

@@ -17,6 +17,12 @@ const CarrouselWrapper = styled.div`
     justify-content: flex-end;
     align-items: center;
     position: relative;
+
+    @media (max-width: 768px) {
+        max-width: 335px;
+        height: 255px;
+        border-radius: 10px;
+    }
 `;
 
 const ArrowWrapper = styled.div`
@@ -36,6 +42,10 @@ const CounterWrapper = styled.div`
     flex-direction: column; 
     align-items: center;
     justify-content: center;
+
+    @media (max-width: 768px) {
+        display: none;
+    }
 `
 
 const ArrowButton = styled.img`
@@ -43,6 +53,11 @@ const ArrowButton = styled.img`
     height: 80px;
     margin: 0 10px;
     cursor: pointer;
+
+    @media (max-width: 768px) {
+        max-width: 24px;
+        height: 40px;
+    }
 `;
 
 const Carrousel = ({ images }) => {
