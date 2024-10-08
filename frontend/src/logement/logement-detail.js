@@ -1,4 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from 'react-router-dom'
 import styled from "styled-components";
 import { useParams } from 'react-router-dom';
 import Carrousel from "../components/carrousel";
@@ -166,13 +167,32 @@ const CollapseEquipement = styled.div`
 const LogementDetail = () => {
     const { id } = useParams();
     const [property, setProperty] = useState({});
+    const [error, setError] = useState(null);
+    const navigate = useNavigate();
 
-    useEffect(function() {
-        fetch(`http://localhost:8080/api/properties/${id}`)
-            .then(response => response.json())
-            .then(property => setProperty(property))
-            .catch(error => console.error('Erreur lors de la récupération de la propriété :', error))
-    }, [id]);
+    useEffect(() => {
+        const fetchProperty = async () => {
+            try {
+                const response = await fetch(`http://localhost:8080/api/properties/${id}`);
+                if (!response.ok) {
+                    throw new Error('Property not found');
+                }
+                const property = await response.json();
+                
+                // Si la propriété est vide ou ne contient pas d'enregistrement valide
+                if (!property || Object.keys(property).length === 0) {
+                    navigate('/404'); // Redirection vers la page 404
+                } else {
+                    setProperty(property);
+                }
+            } catch (error) {
+                setError(error.message);
+                navigate('/404'); // Redirection vers la page 404 en cas d'erreur
+            }
+        };
+
+        fetchProperty();
+    }, [id, navigate]);
 
     return  (
         <LogementDetailWrapper>
