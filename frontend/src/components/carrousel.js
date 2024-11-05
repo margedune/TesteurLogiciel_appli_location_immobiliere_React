@@ -11,6 +11,7 @@ const CarrouselWrapper = styled.div`
     background-size: cover;
     background-position: center;
     transition: background-image 0.5s ease-in-out;
+    padding-bottom: 20px;
 
     display: flex;
     flex-direction: column;
@@ -19,6 +20,7 @@ const CarrouselWrapper = styled.div`
     position: relative;
 
     @media (max-width: 768px) {
+        margin: 0 auto;
         max-width: 335px;
         height: 255px;
         border-radius: 10px;
@@ -76,23 +78,33 @@ const Carrousel = ({ images }) => {
         );
     }
 
+    const renderArrow = (images) => {
+        if (images.length > 1) {
+            return (
+                <>
+                    <ArrowWrapper className="arrow">
+                        <ArrowButton
+                            className="arrow-back"
+                            src={arrowBack}
+                            alt="arrowBack"
+                            onClick={decrement}
+                        />
+                        <ArrowButton
+                            className="arrow-forward"
+                            src={arrowForward}
+                            alt="arrowForward"
+                            onClick={increment}
+                        />
+                    </ArrowWrapper>
+                    <CounterWrapper>{currentIndex + 1}/{images.length}</CounterWrapper>
+                </>
+            );
+        }
+    }
+
     return (
         <CarrouselWrapper $backgroundImage={images[currentIndex]}>
-            <ArrowWrapper className="arrow">
-                <ArrowButton 
-                    className="arrow-back"
-                    src={arrowBack}
-                    alt="arrowBack" 
-                    onClick={decrement}
-                />
-                <ArrowButton
-                    className="arrow-forward"
-                    src={arrowForward} 
-                    alt="arrowForward"
-                    onClick={increment}
-                />
-            </ArrowWrapper>
-            <CounterWrapper>{currentIndex + 1}/{images.length}</CounterWrapper>
+            {renderArrow(images)}
         </CarrouselWrapper>
     );
 }

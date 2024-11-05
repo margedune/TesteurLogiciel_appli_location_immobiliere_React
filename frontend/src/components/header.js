@@ -10,21 +10,28 @@ const HeaderWrapper = styled.nav`
     align-items: center;
     width: 90%;
     height: 68px;
-    margin: auto;
+    margin: 10px auto;
     z-index: 1000;
 
     display: flex;
     justify-content: space-between;
 
     @media (max-width: 768px) {
+        width: 100%;
         height: auto;
         padding: 20px 0;
     }
 `;
 
 const Logo = styled.img`
-    width: 100px;
-    height: auto;
+    width: 210px;
+    height: 68px;
+
+    @media (max-width: 768px) {
+        padding: 0 5px;
+        width: 160px;
+        height: 48px;
+    }
 `;
 
 const Ul = styled.ul`

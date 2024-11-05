@@ -5,7 +5,6 @@ import { useParams } from 'react-router-dom';
 import Carrousel from "../components/carrousel";
 import Rate from "../components/rate";
 import Collapse from "../components/collapse";
-import { v4 as uuidv4 } from 'uuid';
 
 const LogementDetailWrapper = styled.div`
     width: 90%;
@@ -34,7 +33,7 @@ const LogementDescription = styled.div`
     }
 `;
 
-const LocaliteWrapper = styled.div`
+const LocalityWrapper = styled.div`
     
 
     @media (max-width: 768px) {
@@ -43,14 +42,14 @@ const LocaliteWrapper = styled.div`
     }
 `;
 
-const LocaliteTitle = styled.div`
+const LocalityTitle = styled.div`
     margin: 0;
     color: #FF6060;
     font-size: 1.7rem;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 `
 
-const LocaliteRegion = styled.div`
+const LocalityRegion = styled.div`
     font-size: 0.8rem;
     line-height: 26px;
 `;
@@ -69,12 +68,12 @@ const HostWrapper = styled.div`
     }
 `;
 
-const HostNameWarapper = styled.div`
+const HostNameWrapper = styled.div`
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     align-items: center;
     @media (max-width: 768px) {
-            font-size: 12px;
+        font-size: 12px;
     }
 `;
 
@@ -154,7 +153,7 @@ const CollapseDescription = styled.div`
     }
 `;
 
-const CollapseEquipement = styled.div`
+const CollapseEquipment = styled.div`
     @media (max-width: 768px) {
         grid-area: 'equipement';
         order: 6;
@@ -163,6 +162,10 @@ const CollapseEquipement = styled.div`
         position: relative;
     }
 `;
+
+function generateUniqueKey() {
+    return `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`;
+}
 
 const LogementDetail = () => {
     const { id } = useParams();
@@ -191,7 +194,7 @@ const LogementDetail = () => {
             }
         };
 
-        fetchProperty();
+        fetchProperty().then(r => console.log(r));
     }, [id, navigate]);
 
     return  (
@@ -202,26 +205,26 @@ const LogementDetail = () => {
             }
             <br/>
             <LogementDescription>
-                <LocaliteWrapper>
-                    <LocaliteTitle>{property?.title}</LocaliteTitle>
-                    <LocaliteRegion>{property.location}</LocaliteRegion>
-                </LocaliteWrapper>
+                <LocalityWrapper>
+                    <LocalityTitle>{property?.title}</LocalityTitle>
+                    <LocalityRegion>{property.location}</LocalityRegion>
+                </LocalityWrapper>
                 <HostWrapper>
                     <RateWrapperMobile>
                         <Rate rating={parseInt(property?.rating)} />
                     </RateWrapperMobile>
-                    <HostNameWarapper>
+                    <HostNameWrapper>
                         <HostName>
                             {property?.host?.name.split(" ").map((name) => (
-                                <HostNameItem key={uuidv4()}>{name}</HostNameItem>
+                                <HostNameItem key={generateUniqueKey()}>{name}</HostNameItem>
                             ))}
                         </HostName>
                         <HostPicture src={property?.host?.picture} />
-                    </HostNameWarapper>
+                    </HostNameWrapper>
                 </HostWrapper>
                 <TagsWrapper>
                     {property.tags !== undefined
-                        ? (property.tags.map((tag) => (<TagItem key={uuidv4()}>{tag}</TagItem>)))
+                        ? (property.tags.map((tag) => (<TagItem key={generateUniqueKey()}>{tag}</TagItem>)))
                         : (<div>Aucun tag</div>)
                     }
                 </TagsWrapper>
@@ -236,16 +239,16 @@ const LogementDetail = () => {
                         content={property.description}
                     />    
                 </CollapseDescription>
-                <CollapseEquipement>
+                <CollapseEquipment>
                     <Collapse
                         label="Equipement" 
                         width="100%"
                         btnHeight="52px"
                         content={property?.equipments?.map((equipment) => (
-                            <div key={uuidv4()}>{equipment}</div>
+                            <div key={generateUniqueKey()}>{equipment}</div>
                         ))}
                     />
-                </CollapseEquipement>
+                </CollapseEquipment>
             </LogementDescription>
         </LogementDetailWrapper>
     );

@@ -4,10 +4,6 @@ import collapseDown from "../images/collapse-down.png";
 
 const CollapseWrapper = styled.div`
     width: ${(props) => props.$width};
-
-    @media (max-width: 768px) {
-        width: 90%;
-    }
 `;
 
 const CollapseButton = styled.div`
@@ -24,7 +20,7 @@ const CollapseButton = styled.div`
 
     @media (max-width: 768px) {
         height: 30px;
-        font-size: 0.7rem;
+        font-size: 0.8rem;
     }
 `;
 
@@ -42,9 +38,11 @@ const CollapseContent = styled.div`
     display: ${(props) => (props.open ? 'flex' : 'none')};
     flex-direction: column;
     padding: 10px;
+    background-color: #f6f6f6;
+    height: 150px;
 
     @media (max-width: 768px) {
-        font-size: 0.7rem;
+        font-size: 0.8rem;
     }
 `;
 
