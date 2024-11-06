@@ -67,7 +67,7 @@ const Header = () => {
     const [activeIndex, setActiveIndex] = useState(0);
 
     const menuItems = [
-        { name: "Home", path: "/" },
+        { name: "Acceuil", path: "/" },
         { name: "A Propos", path: "/about" },
     ];
  

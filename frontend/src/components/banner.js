@@ -43,7 +43,8 @@ const H1 = styled.h1`
 const Banner = ({ label, backgroundImage, dark }) => {
     return (
         <BannerWrapper $backgroundImage={backgroundImage} $dark={dark}>
-            <H1>{ label }</H1>
+            
+            { label ? <H1>{label}</H1> : "" }
         </BannerWrapper>
     );
 }
